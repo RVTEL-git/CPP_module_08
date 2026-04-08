@@ -1,58 +1,112 @@
-#include <iostream>
-#include <algorithm>
-#include <vector>
-
 #include <cstddef>
 #include <stdlib.h>
+#include <deque>
+#include <list>
+#include <vector>
+#include "easyfind.hpp"
+
+#define MAX_RAND 1000000L
+
+template <typename T>
+T ft_make_container( void ) {
+	T ret;
+	for (int i = 0; i < 5; i++)
+	{
+		int random = rand() / MAX_RAND;;
+		ret.push_back(random);
+
+	}
+	return (ret);
+}
 
 int main()
 {
 	srand(time(NULL));
-	const long max_rand = 1000000L;
-	double lower_bound = 0;
-	double upper_bound = 100;
+	int			to_find = 42;
 
-	std::vector<int> vect_int;
-	for (int i = 0; i < 3; i++)
+	std::vector<int> vect_int = ft_make_container<std::vector<int> >();
+	std::vector<double> vect_double = ft_make_container<std::vector<double> >();
+	std::deque<int> deque_int = ft_make_container<std::deque<int> >();
+	std::deque<double> deque_double = ft_make_container<std::deque<double> >();
+	std::list<int> list_int = ft_make_container<std::list<int> >();
+	std::list<double> list_double = ft_make_container<std::list<double> >();
+
+	std::cout << "=== Int not in ===\n";
+	try {
+		easyfind(vect_int, to_find);
+	}
+	catch(const std::exception& e)
 	{
-		int random_int = lower_bound + (upper_bound - lower_bound) * (rand() % max_rand) / max_rand;
-		vect_int.push_back(random_int);
+		std::cerr << e.what() << '\n';
 	}
-	std::vector<int>::iterator it;
-	std::vector<int>::iterator ite = vect_int.end();
-	for (it = vect_int.begin(); it != ite; ++it)
-		std::cout << *it << std::endl;
-	std::cout << "=====" << std::endl;
-	std::vector<double> vect_double;
-	vect_double.push_back(3.003);
-	int test = 3;
-	for (int i = 0; i < 3; i++)
+
+	try {
+		easyfind(deque_int, to_find);
+	}
+	catch(const std::exception& e)
 	{
-		double random_double = lower_bound + (upper_bound - lower_bound) * (rand() % max_rand) / max_rand;
-		vect_double.push_back(random_double);
+		std::cerr << e.what() << '\n';
 	}
-	std::vector<double>::iterator dit;
-	std::vector<double>::iterator dite = vect_double.end();
-	for (dit = vect_double.begin(); dit != dite; ++dit) {
-		if (test == *dit)
-			std::cout << "yes" << std::endl;
-		std::cout << *dit << std::endl;
+
+	try {
+		easyfind(list_int, to_find);
 	}
-	std::cout << "=====" << std::endl;
-	std::vector<float> vect_float;
-	vect_float.push_back(3.003);
-	for (int i = 0; i < 3; i++)
+	catch(const std::exception& e)
 	{
-		float random_float = lower_bound + (upper_bound - lower_bound) * (rand() % max_rand) / max_rand;
-		vect_float.push_back(random_float);
+		std::cerr << e.what() << '\n';
 	}
-	std::vector<float>::iterator fit;
-	std::vector<float>::iterator fite = vect_float.end();
-	for (fit = vect_float.begin(); fit != fite; ++fit) {
-		if (test == *fit)
-			std::cout << "yes" << std::endl;
-		std::cout << *fit << std::endl;
+
+	vect_double.push_back(42.042);
+	deque_double.push_back(42.042);
+	list_double.push_back(42.042);
+
+	std::cout << "=== Compare to double ===\n";
+	try {
+		easyfind(vect_double, to_find);
 	}
-	std::cout << "=====" << std::endl;
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() <<'\n';
+	}
+
+	try {
+		easyfind(deque_double, to_find);
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() <<'\n';
+	}
+
+	try {
+		easyfind(list_double, to_find);
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+	}
+
+	std::cout << "=== Added in vect ===\n";
+	vect_int.push_back(42);
+	try {
+		easyfind(vect_int, to_find);
+		easyfind(deque_int, to_find);
+		easyfind(list_int, to_find);
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+	}
+	std::cout << "=== Added in rest ===\n";
+	deque_int.push_back(42);
+	list_int.push_back(42);
+	try {
+		easyfind(vect_int, to_find);
+		easyfind(deque_int, to_find);
+		easyfind(list_int, to_find);
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+	}
 	return (0);
 }

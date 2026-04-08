@@ -1,11 +1,10 @@
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -I$(HEADER_DIR) -g3
 
-NAME = Array
+NAME = Easyfind
 
-# HEADER_DIR = include
-# HEADER = $(HEADER_DIR)/Array.tpp \
-# 		 $(HEADER_DIR)/Array.hpp
+HEADER_DIR = include
+HEADER = $(HEADER_DIR)/easyfind.hpp
 
 SRCS_DIR = source
 SRCS = $(SRCS_DIR)/main.cpp
