@@ -1,14 +1,15 @@
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -I$(HEADER_DIR) -g3
 
-NAME = Array
+NAME = Span
 
 HEADER_DIR = include
-HEADER = $(HEADER_DIR)/Array.tpp \
-		 $(HEADER_DIR)/Array.hpp
+HEADER = $(HEADER_DIR)/Span.hpp
 
 SRCS_DIR = source
-SRCS = $(SRCS_DIR)/main.cpp
+
+SRCS = $(SRCS_DIR)/Span.cpp \
+	   $(SRCS_DIR)/main.cpp
 
 OBJ_DIR = obj
 OBJS = $(SRCS:$(SRCS_DIR)/%.cpp=$(OBJ_DIR)/%.o)

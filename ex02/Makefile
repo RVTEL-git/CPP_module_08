@@ -1,11 +1,11 @@
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -I$(HEADER_DIR) -g3
 
-NAME = Array
+NAME = Mutan
 
 HEADER_DIR = include
-HEADER = $(HEADER_DIR)/Array.tpp \
-		 $(HEADER_DIR)/Array.hpp
+HEADER = $(HEADER_DIR)/MutantStack.tpp \
+		 $(HEADER_DIR)/MutantStack.hpp
 
 SRCS_DIR = source
 SRCS = $(SRCS_DIR)/main.cpp
